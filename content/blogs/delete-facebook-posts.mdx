@@ -1,0 +1,108 @@
+---
+title: "Delete All Your Old Facebook Posts with a Few Lines of Javascript"
+publishedDate: "October 10, 2018"
+slug: "delete-facebook-posts-with-javascript"
+---
+
+# Delete All Your Old Facebook Posts with a Few Lines of Javascript
+
+_Last Updated: June 27th, 2020_
+
+## Intro
+
+The other day I was scrolling through Facebook when I noticed a new feature called Activity Log. This feature gives you a zoomed-out look of your timeline that allows you to jump through to different years and see the posts, comments, and pictures from today back to the beginning.
+
+After a few minutes skimming through old posts from my days as a 14 year old internet spazz, I realized I had thousands of posts that needed to be deleted. To click and manually delete each post could have taken weeks, so instead I wrote a few lines of Javascript that could instantly delete my entire post history in a matter of seconds.
+
+This post is still evolving, right now I’m going to admit the code is pretty manual. If it catches enough traction I’ll package it all up in a Chrome extension and make a link available here.
+
+## Navigate to Your Post History in Facebook
+
+Before writing any code, you'll need to navigate to the dashboard in Facebook where you're able to see your activity log. The Facebook UI has recently changed as of May 2020, but you should be able to navigate to your activity log by entering the following address in your browser's address bar:
+
+```
+https://www.facebook.com/{YOUR_FACEBOOK_USERNAME}/allactivity
+```
+
+Be sure to replace `{YOUR_FACEBOOK_USERNAME}` with your actual Facebook username.
+
+Once you land on that page, there should be a link that says "Filter" which you can click to filter the list of activity down to just "Posts". Once you click that filter, scroll all the way to the bottom of the list (which may take a while) to render all posts into the DOM.
+
+## The Code
+
+Go ahead and open your browser’s developer tools > Javascript console tab. Facebook has a couple warning messages about entering malicious code given to you by strangers on the internet, but we’ll just ignore that for now ¯\\\_(ツ)\_/¯
+
+The first thing that we’ll want to do is gain access to the list of DOM nodes that house the edit button:
+
+```js
+var btns = document.querySelectorAll('[aria-label="Action options"]');
+```
+
+Now from this point on, it's very hard to write a single tutorial that will last the test of time. Facebook uses react and a whole bunch of other tooling behind the scenes of their web application, and it's very apparent if you start looking at the number of nested divs, each with about 10 - 15 CSS classes all named with cryptographic short strings.
+
+This makes it virtually impossible to create a single way to detect all the "Delete" nodes and click them individually, but essentially what you want to do is something like this:
+
+First, write a function in the Javascript console that loops through the DOM tree backwards starting with a node of your choice. The node we give this function will eventually be a `span` element with the text of that element being "Delete". The reason we need to do this is because with Facebook's DOM structure, the element that has the text "Delete" is not the same element that you click to actually delete... thanks, Facebook.
+
+```js
+var findDeleteButton = function (node, func) {
+  var node = node;
+  var attr = "role";
+  var val = "menuitem";
+  var notFound = true;
+
+  while (notFound) {
+    if (func(node, attr, val)) {
+      notFound = false;
+      return node;
+    } else {
+      node = node.parentElement;
+    }
+  }
+};
+```
+
+Then write a function that checks for a specified attribute/value pair on a DOM element. Have it return `true` if the attribute/value pair is found, and `false` if it is not.
+
+```js
+var checkAttrVal = function (node, attr, val) {
+  if (node.hasAttribute(attr)) {
+    if (node.getAttribute(attr) === val) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+};
+```
+
+Then, we put it all together.
+
+1. First, we loop through the array of button elements to open the prompt containing the "Delete" button for the post
+2. For each button element, we trigger a `click()` method
+3. Once we have the prompt containing the "Delete" button open, we use an XPath selector to scan the DOM for a `span` element with its text set to "Delete"
+4. Then, as mentioned above, we need to find the parent element that you actually need to click to delete the post. Walk backwards from that `span` until you find an element with attribute == "menuitem"
+5. Trigger another `click()` method to click the delete button element
+6. Continue the loop
+
+```js
+btns.forEach((btn) => {
+  btn.click();
+  var deleteTextNode = $x("//span[text()='Delete']"); // traverse dom for DOM elements with innerText == "Delete"
+  var deleteBtnNode = findDeleteButton(deleteTextNode, checkAttrVal); // traverse parent dom nodes until you find a parent node that you can fire an "click()" method on.
+  deleteBtnNode.click(); // fire the .click() method on that node
+});
+```
+
+There you are! If done correctly, you will have deleted **every single post you've ever posted on Facebook**.
+
+### Facebook's DOM Structure Changes Often
+
+This post was last updated June 27th, 2020, but Facebook's DOM structure changes often. Facebook's DOM is built from tens of thousands of React components, and millions of DOM attributes that can change any time. There are four "weak" points in this code:
+
+1. In our `btns` array, the `aria-label` for the "Action options" button could change at any time.
+2. In our `checkAttrVal` function, nobody can say that the clickable parent node will be found with that specific attribute/value pair. They could easily change, for example, `role="menuitem"` to `role="button"` which would require you to modify this code.
+3. The XPath selector we use to find the "Delete" text could change. Facebook could swap the `span` tag with another HTML element if they choose.
+4. The entire script is subject to fail if Facebook redesigns their Activity Log, they already did it once in 2020.
