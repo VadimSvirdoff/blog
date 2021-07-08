@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import Nav from "../components/nav";
 import Footer from "../components/footer";
 import { promises as fs } from "fs";
-import styles from "../styles/index.module.scss";
+import styles from "../styles/pages/_index.module.scss";
 
 interface Blog {
   slug: string;
@@ -28,7 +28,7 @@ export default function Home({ blogs, projects }: Props) {
   return (
     <div>
       <Head>
-        <title>Vadym Svyrydov</title>
+        <title>👋 Hey, I'm Vadym Svyrydov</title>
         <meta
           name="description"
           content="Full stack developer building apps that make problems go away."
@@ -39,24 +39,11 @@ export default function Home({ blogs, projects }: Props) {
           <Nav />
           <div className={styles.blurb}>
             <p>
-              Hi, I'm <strong>Vadym</strong> — a software developer based out
-              of Austin, TX. I enjoy working with Javascript on both the client
-              and server to craft memorable front-end experiences.
+              I'm just a dreamer and geek, who wants to make out world better. <br/>
+              My main interest is <strong>coding and science</strong>, I believe that's way will save humanity,<br/>
+              So let's rock it.🚀
             </p>
-            <p>
-              This portfolio is built from scratch with <strong>Next.js</strong>{" "}
-              and a library called{" "}
-              <code>
-                <a
-                  href="https://github.com/hashicorp/next-mdx-remote"
-                  target="_blank" rel="noreferrer"
-                >
-                  next-mdx-remote
-                </a>
-              </code>
-              . It allows you to write Markdown and focus on the{" "}
-              <em>content</em> of your portfolio.
-            </p>
+            
           </div>
           <h2 className={styles.section}>Articles</h2>
           {blogs.map((blog) => {
