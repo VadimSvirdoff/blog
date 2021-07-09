@@ -1,0 +1,23 @@
+.link:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  font-size: 2.25em;
+  font-weight: bold;
+  margin: 0;
+
+  a {
+    color: inherit;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 2.5rem 0;
+}
+
+.navItem {
+  list-style-type: none;
+}
