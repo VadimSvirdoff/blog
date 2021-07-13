@@ -2,7 +2,6 @@ import React from 'react'
 import path from "path";
 import { promises as fs } from "fs";
 import matter from "gray-matter";
-import prism from "@mapbox/rehype-prism";
 import { serialize } from "next-mdx-remote/serialize";
 import { ParsedUrlQuery } from 'querystring';
 
@@ -88,7 +87,6 @@ export const getSlagsProps = async ({ directoryPath, params }: GetSlagsProps) =>
     const { content, data } = matter(fileContent);
     const slagProps = await serialize(content, {
         scope: data,
-        mdxOptions: { rehypePlugins: [prism] },
     });
 
     return { props: { slagProps } };
