@@ -1,8 +1,8 @@
 import React from 'react'
 import Head from "next/head";
-import Nav from "components/nav";
+import Nav from "components/Nav";
 import { MDXRemote } from "next-mdx-remote";
-import Footer from "components/footer";
+import Footer from "components/Footer";
 import styles from "styles/pages/_post.module.scss";
 
 

@@ -1,6 +1,6 @@
 import { GetStaticPropsContext } from "next";
 import { getSlagsPath, getSlagsProps } from "lib/getSlags";
-import PostPage from 'components/post/Post';
+import PostPage from 'modules/post/Post';
 
 interface Blog {
   compiledSource: string;

@@ -1,5 +1,5 @@
 import { getSlags } from "lib/getSlags";
-import HomePage, {HomePageProps} from "components/home/HomePage";
+import HomePage, {HomePageProps} from "modules/home/HomePage";
 
 
 const Home = ({ blogs, projects }: HomePageProps) => (
