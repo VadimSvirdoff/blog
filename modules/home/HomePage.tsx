@@ -26,7 +26,7 @@ const HomePage = ({ blogs, projects }: HomePageProps) => {
     return (
         <div>
       <Head>
-        <title>👋 Hey, I'm Vadym Svyrydov</title>
+        <title>👋 Home Page</title>
         <meta
           name="description"
           content="Full stack developer building apps that make problems go away."
