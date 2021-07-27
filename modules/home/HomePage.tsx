@@ -37,8 +37,9 @@ const HomePage = ({ blogs, projects }: HomePageProps) => {
           <Nav />
           <div className={styles.blurb}>
             <p>
-              I'm just a dreamer and geek, who wants to make out world better. <br/>
-              My main interest is <strong>coding and science</strong>, I believe that's way will make our world better,<br/>
+              I'm just a dreamer and geek.<br/>
+              My main interest is <strong>coding, science and fantasy</strong>,<br/> 
+              I believe that's way will make our world better,<br/>
               So let's rock it.🚀
             </p>
             
