@@ -1,4 +1,3 @@
-import React from 'react'
 import path from "path";
 import { promises as fs } from "fs";
 import matter from "gray-matter";
