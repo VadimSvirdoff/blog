@@ -1,8 +1,8 @@
-import { BlogProps } from './HomePage';
+import { SlagProps } from './HomePage';
 import Link from "next/link";
 import styles from "styles/pages/_index.module.scss";
 
-type Blogs = { blogs: BlogProps[] }
+type Blogs = { blogs: SlagProps[] }
 
 
 const Blog = ({ blogs }: Blogs) => (

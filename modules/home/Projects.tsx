@@ -1,8 +1,8 @@
-import { ProjectProps } from './HomePage';
+import { SlagProps } from './HomePage';
 import styles from "styles/pages/_index.module.scss";
 import Link from "next/link";
 
-type Projects = { projects: ProjectProps[] }
+type Projects = { projects: SlagProps[] }
 
 const Projects = ({ projects }: Projects) => (
     <>
