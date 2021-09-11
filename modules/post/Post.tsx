@@ -3,7 +3,7 @@ import Head from "next/head";
 import Nav from "components/nav/Nav";
 import { MDXRemote } from "next-mdx-remote";
 import Footer from "components/footer/Footer";
-import styles from "styles/pages/_post.module.scss";
+import styles from "./_post.module.scss";
 
 
 interface Data {
