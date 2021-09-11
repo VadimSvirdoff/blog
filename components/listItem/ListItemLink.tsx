@@ -20,8 +20,8 @@ export const ListItemLink = ({ title, titleType = "link", slug = "#" }: ListItem
 
         case "info":
             return (
-                <h3>
-                    <b className={styles.postTitle}>{title}</b>
+                <h3 className={styles.postTitle}>
+                    <b>{title}</b>
                 </h3>
             )
 
