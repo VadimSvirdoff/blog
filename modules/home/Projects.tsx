@@ -1,26 +1,22 @@
 import { SlagProps } from './HomePage';
-import styles from "styles/pages/_index.module.scss";
+// import styles from "styles/pages/_index.module.scss";
 import Link from "next/link";
+import { formatDate } from 'utils/time';
 
 type Projects = { projects: SlagProps[] }
 
 const Projects = ({ projects }: Projects) => (
     <>
-        {projects.map((project) => {
+        {projects.map(({ slug, title, publishedDate }) => {
             return (
-                <div key={project.slug} className={styles.postCard}>
-                    <Link href={project.slug}>
+                <div key={slug} className={styles.postCard}>
+                    <Link href={slug}>
                         <a className={styles.link}>
-                            <h3 className={styles.postTitle}>{project.title}</h3>
+                            <h3 className={styles.postTitle}>{title}</h3>
                         </a>
                     </Link>
                     <p>
-                        {new Intl.DateTimeFormat("default", {
-                            weekday: "long",
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                        }).format(new Date(project.publishedDate))}
+                        {formatDate({ publishedDate })}
                     </p>
                 </div>
             );

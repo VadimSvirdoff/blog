@@ -24,6 +24,7 @@ interface SelectSlagPropsPath {
         slug?: string;
         title?: string;
         publishedDate?: string;
+        titleType?: string;
     },
     filePath?: string
 }
@@ -34,9 +35,9 @@ const selectSlagPropsPath = ({ type, data, filePath }: SelectSlagPropsPath) => {
         return { slug, filePath };
     }
 
-    const { title, publishedDate } = data;
+    const { title, publishedDate, titleType } = data;
     const slug = `/${type}/${data.slug}`;
-    return { slug, title, publishedDate };
+    return { slug, title, publishedDate, titleType };
 
 
 }

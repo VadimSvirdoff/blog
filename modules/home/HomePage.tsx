@@ -1,15 +1,14 @@
 import Head from "next/head";
-import Nav from "components/Nav";
-import Footer from "components/Footer";
-import styles from "styles/pages/_index.module.scss";
-import Projects from "./Projects";
-import Blogs from "./Blogs";
-import Books from "modules/home/Books";
+import Nav from "components/nav/Nav";
+import Footer from "components/footer/Footer";
+import styles from "./_homePage.module.scss";
+import ListItem from "components/listItem/ListItem";
 
 export interface SlagProps {
   slug: string;
   title: string;
   publishedDate: string;
+  titleType: string;
 }
 
 export interface HomePageProps {
@@ -41,11 +40,11 @@ const HomePage = ({ blogs, projects, books }: HomePageProps) => {
 
           </div>
           <h2 className={styles.section}>Articles</h2>
-          <Blogs blogs={blogs} />
+          <ListItem list={blogs} />
           <h2 className={styles.section}>Projects</h2>
-          <Projects projects={projects} />
+          <ListItem list={projects} />
           <h2 className={styles.section}>Books</h2>
-          <Books books={books} />
+          <ListItem list={books} />
         </main>
         <Footer />
       </div>
