@@ -1,11 +1,9 @@
 import Head from "next/head";
 import Nav from "components/nav/Nav";
 import { MDXRemote } from "next-mdx-remote";
-import Footer from "components/footer/Footer";
-import styles from "./_post.module.scss";
+import styles from "./_cv.module.scss";
 
-
-interface Data {
+interface CV {
     compiledSource: string;
     scope: {
       title: string;
@@ -14,20 +12,22 @@ interface Data {
   }
   
   interface Props {
-    data: Data;
+    slagProps: CV;
   }
 
-const Post = ({data}: Props) => (
-    <>
+const Cv = ({ slagProps }: Props ) => {
+    return (
+        <>
         <Head>
-            <title>{data.scope.title} - Svyrydov Vadym</title>
+            <title>{slagProps.scope.title}</title>
         </Head>
         <div className={styles.container}>
-            <Nav />
-            <MDXRemote {...data} />
-            <Footer />
+            <Nav navLinkType="CUSTOM_NAV_LINK"/>
+            <MDXRemote {...slagProps} />
         </div>
     </>
-)
+    )
+}
 
-export default Post
+
+export default Cv
