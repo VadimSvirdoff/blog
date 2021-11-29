@@ -1,5 +1,5 @@
 import { GetStaticPropsContext } from "next";
-import { getSlagsPath, getSlagsProps } from "lib/getSlags";
+import { getPaths, getProps } from "lib/getSlags";
 import PostPage from 'modules/post/Post';
 
 interface Blog {
@@ -19,12 +19,12 @@ const Post = ({ slagProps }: Props) => (
 )
 
 export async function getStaticPaths() {
-  return await getSlagsPath({ directoryPath: "content/blogs" });
+  return await getPaths({ directoryPath: "content/blogs" });
 
 }
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
-  return await getSlagsProps({ directoryPath: "content/blogs", params })
+  return await getProps({ directoryPath: "content/blogs", params })
 }
 
 export default Post;
