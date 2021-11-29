@@ -8,6 +8,7 @@ interface CV {
     scope: {
       title: string;
       slug: string;
+      name: string;
     };
   }
   
@@ -22,7 +23,7 @@ const Cv = ({ slagProps }: Props ) => {
             <title>{slagProps.scope.title}</title>
         </Head>
         <div className={styles.container}>
-            <Nav navLinkType="CUSTOM_NAV_LINK"/>
+            <Nav navLinkType="CUSTOM_NAV_LINK" name={slagProps.scope.name}/>
             <MDXRemote {...slagProps} />
         </div>
     </>

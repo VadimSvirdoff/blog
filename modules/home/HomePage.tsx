@@ -15,7 +15,7 @@ export interface HomePageProps {
   blogs: SlagProps[];
   projects: SlagProps[];
   books: SlagProps[];
-  }
+}
 
 const HomePage = ({ blogs, projects, books }: HomePageProps) => {
   return (

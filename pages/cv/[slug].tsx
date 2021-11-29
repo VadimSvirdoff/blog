@@ -7,6 +7,7 @@ interface Blog {
     scope: {
       title: string;
       slug: string;
+      name: string;
     };
   }
   
