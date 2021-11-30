@@ -1,19 +1,18 @@
-import { SlagProps } from 'modules/home/HomePage';
 import styles from "./_listItem.module.scss";
 import { ListItemLink } from 'components/listItem/ListItemLink';
 import { ListItemDate } from 'components/listItem/ListItemDate';
+import { IFileProps } from 'types/types';
 
-interface ListItem {
-    list: SlagProps[]
-}
+type listItemType = (arg: { list: IFileProps[] }) => JSX.Element;
 
-const ListItem = ({ list }: ListItem) => (
+
+const ListItem: listItemType = ({ list }) => (
     <>
         {list.map(({ slug, title, publishedDate, titleType }) => {
             return (
                 <div key={slug} className={styles.postCard}>
                     <ListItemLink title={title} titleType={titleType} slug={slug} />
-                    <ListItemDate publishedDate={publishedDate}/>
+                    <ListItemDate publishedDate={publishedDate} />
                 </div>
             );
         })}

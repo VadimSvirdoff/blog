@@ -16,17 +16,15 @@ export interface IGetProps {
     params: ParsedUrlQuery | undefined
 }
 
-type mappedFileDataType  = IFileProps | {filePath: string, slug: string};
-
-export type directoryReaderType = (arg: IDirectoryReader) => Promise<mappedFileDataType[]>;
+export type directoryReaderType = (arg: IDirectoryReader) => Promise<IFileProps[]>;
 
 interface IFileReader {
     filename: string,
     directory: string,
-    type: string | undefined
+    type?: string
 }
 
-export type fileReaderType = (arg: IFileReader) =>  Promise<mappedFileDataType>
+export type fileReaderType = (arg: IFileReader) =>  Promise<IFileProps>
 
 export type getPathsType = (arg: IGetPath) => Promise<{ paths: { params: { slug: string; }; }[]; fallback: false; }>
 

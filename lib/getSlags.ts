@@ -3,7 +3,6 @@ import { promises as fs } from "fs";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { directoryReaderType, fileReaderType, getPathsType, getPropsType } from "./types";
-import { fileDataMapper } from "utils/slag";
 
 export const directoryReader: directoryReaderType = async ({ directoryPath, type }) => {
     const directory = path.join(process.cwd(), directoryPath);
@@ -30,14 +29,11 @@ const fileReader: fileReaderType = async ({ filename, directory, type }) => {
         typeof publishedDate === "string" &&
         typeof titleType === "string"
     ) {
-        return fileDataMapper({
-            slug,
-            title,
-            publishedDate,
-            titleType,
-            filePath,
-            type
-        })
+        if (!type) {
+            return { slug, title, publishedDate, titleType, filePath };
+        }
+
+        return { slug: `/${type}/${slug}`, title, publishedDate, titleType, filePath, type };
     } else {
         return Promise.reject();
     }

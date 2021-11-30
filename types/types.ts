@@ -4,4 +4,5 @@ export interface IFileProps {
     publishedDate: string;
     titleType: string;
     filePath: string;
+    type?: string;
 }

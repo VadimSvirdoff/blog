@@ -3,18 +3,10 @@ import Nav from "components/nav/Nav";
 import Footer from "components/footer/Footer";
 import styles from "./_homePage.module.scss";
 import ListItem from "components/listItem/ListItem";
-
-export interface SlagProps {
-  slug: string;
-  title: string;
-  publishedDate: string;
-  titleType: string;
-}
+import { IFileProps } from "types/types";
 
 export interface HomePageProps {
-  blogs: SlagProps[];
-  projects: SlagProps[];
-  books: SlagProps[];
+  [key: string]: IFileProps[];
 }
 
 const HomePage = ({ blogs, projects, books }: HomePageProps) => {
