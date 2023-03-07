@@ -1,6 +1,7 @@
 import { getPaths, getProps } from 'lib/getSlags';
 import CvPage from 'modules/cv/Cv';
 import { GetStaticPropsContext } from 'next';
+import { cvPath } from 'constants/constants';
 
 interface Blog {
     compiledSource: string;
@@ -20,12 +21,12 @@ const CV = ({ slagProps }: Props) => (
 );
 
 export async function getStaticPaths() {
-    return await getPaths({ directoryPath: "content/cv" });
+    return await getPaths({ directoryPath: cvPath });
   
   }
   
   export async function getStaticProps({ params }: GetStaticPropsContext) {
-    return await getProps({ directoryPath: "content/cv", params })
+    return await getProps({ directoryPath: cvPath, params })
   }
 
 export default CV

@@ -14,17 +14,17 @@ interface Data {
   }
   
   interface Props {
-    data: Data;
+    slagProps: Data;
   }
 
-const Post = ({data}: Props) => (
+const Post = ({ slagProps: { compiledSource, scope } }: Props) => (
     <>
         <Head>
-            <title>{data.scope.title} - Svyrydov Vadym</title>
+            <title>{scope.title} - Svyrydov Vadym</title>
         </Head>
         <div className={styles.container}>
             <Nav />
-            <MDXRemote {...data} />
+            <MDXRemote compiledSource={compiledSource} scope={scope} />
             <Footer />
         </div>
     </>
