@@ -9,7 +9,16 @@ export interface HomePageProps {
   [key: string]: IFileProps[];
 }
 
-const HomePage = ({ blogs, projects, books }: HomePageProps) => {
+const renderList = (pages: HomePageProps) => (
+  Object.entries(pages).map(page => (
+    <>
+      <h2 className={styles.section}>{page[0]}</h2>
+      <ListItem list={page[1]} />
+    </>
+  ))
+)
+
+const HomePage = (pages: HomePageProps) => {
   return (
     <div>
       <Head>
@@ -31,12 +40,7 @@ const HomePage = ({ blogs, projects, books }: HomePageProps) => {
             </p>
 
           </div>
-          <h2 className={styles.section}>Articles</h2>
-          <ListItem list={blogs} />
-          <h2 className={styles.section}>Projects</h2>
-          <ListItem list={projects} />
-          <h2 className={styles.section}>Books</h2>
-          <ListItem list={books} />
+          {renderList(pages)}
         </main>
         <Footer />
       </div>
