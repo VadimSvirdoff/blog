@@ -1,6 +1,7 @@
 import { GetStaticPropsContext } from "next";
 import { getPaths, getProps } from "lib/getSlags";
 import PostPage from 'modules/post/Post';
+import { projectPath } from 'constants/constants';
 
 interface Project {
   compiledSource: string;
@@ -15,16 +16,16 @@ interface Props {
 }
 
 const Post = ({ slagProps }: Props) => (
-  <PostPage data={slagProps}/>
+  <PostPage slagProps={slagProps}/>
 )
 
 export async function getStaticPaths() {
-  return await getPaths({ directoryPath: "content/projects" });
+  return await getPaths({ directoryPath: projectPath });
 
 }
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
-  return await getProps({ directoryPath: "content/projects", params })
+  return await getProps({ directoryPath: projectPath, params })
 }
 
 export default Post;
