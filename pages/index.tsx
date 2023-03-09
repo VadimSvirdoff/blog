@@ -13,7 +13,7 @@ export async function getStaticProps() {
   let props = {} as { [key: string]: IFileProps[] };
   const directory = path.join(process.cwd(), folderName);
   const fileNames = await fs.readdir(directory);
-  const directoriesData = fileNames.map( directoryName => ({directoryPath: `${folderName}/${directoryName}`, type: directoryName}));
+  const directoriesData = fileNames.map(directoryName => ({ directoryPath: `${folderName}/${directoryName}`, type: directoryName }));
 
   const filesProps = await Promise.all(
     directoriesData.map(async ({ directoryPath, type }) => ({
@@ -22,7 +22,6 @@ export async function getStaticProps() {
   );
 
   filesProps.forEach(fileProps => props = { ...props, ...fileProps });
-    console.log(props)
   return { props };
 }
 
