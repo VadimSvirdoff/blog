@@ -1,0 +1,3 @@
+{
+  "buildCommand": "npm rebuild node-sass & next build"
+}
