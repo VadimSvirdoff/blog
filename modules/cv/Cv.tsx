@@ -23,7 +23,7 @@ const Cv = ({ slagProps: { compiledSource, scope } }: Props) => {
         <title>{scope.title}</title>
       </Head>
       <div className={styles.container}>
-        <Nav navLinkType="CUSTOM_NAV_LINK" name={scope.name} />
+        <Nav disableReturnToHome={true} name={scope.name} />
         <MDXRemote compiledSource={compiledSource} scope={scope} />
       </div>
     </>
