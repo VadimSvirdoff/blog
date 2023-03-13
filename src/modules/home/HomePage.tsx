@@ -22,13 +22,14 @@ const HomePage = ({ blog, books, cv }: HomePageProps) => {
       <div className={styles.container}>
         <main>
           <Nav />
-          <div className={styles.blurb}></div>
-          <p>
-            Welcome onboard!.<br />
-            If you are here that means that our interests are matched.<br />
-            In blog you could find: articles with life stories, recomened books (feedbacks will be in the future), and cv with relevant expirience.<br />
-            If you have some points for improvment, please contact me via email, every feedbacks metters.
-          </p>
+          <div className={styles.blurb}>
+            <p>
+              Welcome onboard!<br />
+              If you are here that means that our interests are matched.<br />
+              In blog you could find: articles with life stories, recomened books (feedbacks will be in the future), and cv with relevant expirience.<br />
+              If you have some points for improvment, please contact me via email, every feedbacks metters.
+            </p>
+          </div>
           <h2 className={styles.section}>CVs</h2>
           <ListItem list={cv} />
           <h2 className={styles.section}>Articles</h2>
